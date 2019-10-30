@@ -45,35 +45,35 @@ const saveWishlist = async (products, username) => {
   await instance.save();
 };
 
-const getProducts = (callback) => {
+const getProducts = (callback = () => {}) => {
   MyProductsModel.find({}).sort([['productId', 'ascending']]).exec((err, docs) => {
     callback(err, docs);
   });
 };
-const getWishlists = (callback) => {
+const getWishlists = (callback = () => {}) => {
   MyWishlistModel.find({}, (err, docs) => {
     callback(err, docs);
   });
 };
 // get product by id
-const getProductById = (productId, callback) => {
+const getProductById = (productId, callback = () => {}) => {
   MyProductsModel.find({ productId }, (err, docs) => {
     callback(err, docs);
   });
 };
 // get wishlist by username
-const getWishlistByUsername = (username, callback) => {
+const getWishlistByUsername = (username, callback = () => {}) => {
   MyWishlistModel.find({ username }, callback);
 };
 // update product when liked
-const updateProduct = (productId, like, callback) => {
+const updateProduct = (productId, like, callback = () => {}) => {
   MyProductsModel.updateOne({ productId }, { like }, (err, docs) => {
     callback(err, docs);
   });
 };
 // delete product on delete request
-const deleteProduct = (productId, callback) => {
-  MyProductsModel.findByIdAndRemove(productId, (err, docs) => {
+const deleteProduct = (productId, callback = () => {}) => {
+  MyProductsModel.findByIdAndDelete(productId, (err, docs) => {
     callback(err, docs);
   });
 };
