@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/BTetsy', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 
@@ -70,7 +71,15 @@ const updateProduct = (productId, like, callback) => {
     callback(err, docs);
   });
 };
+// delete product on delete request
+const deleteProduct = (productId, callback) => {
+  MyProductsModel.findByIdAndRemove(productId, (err, docs) => {
+    callback(err, docs);
+  });
+};
+
 module.exports.updateProduct = updateProduct;
+module.exports.deleteProduct = deleteProduct;
 module.exports.saveProduct = saveProduct;
 module.exports.saveWishlist = saveWishlist;
 module.exports.getProducts = getProducts;

@@ -32,6 +32,17 @@ app.put('/products/:productId', (req, res) => {
     res.status(200).send(results);
   });
 });
+
+app.delete('/products', (req, res) => {
+  console.log('req', req);
+  models.deleteProduct(req.params.productId, (err, results) => {
+    if (err) {
+      res.status(404).send('Error occured deleting product info');
+    }
+    res.status(204).send(results);
+  });
+});
+
 // getting item and username from wishlist
 app.get('/wishlists', (req, res) => {
   models.getWishlists((err, data) => {
@@ -51,7 +62,7 @@ app.post('/wishlists', (req, res) => {
 
 // get individual product item
 app.get('/products/:productId', (req, res) => {
-  models.getProductById(req.params.productId, (err, data) => {
+  models.getProductById(req.query.productId, (err, data) => {
     if (err) {
       throw err;
     } else {
