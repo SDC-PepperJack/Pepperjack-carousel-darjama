@@ -6,7 +6,7 @@ const productModel = require('../../../server/models/index.js');
 const { MyWishlistModel } = productModel;
 MyWishlistModel.find({ username: /test_User/i }).remove().exec();
 
-xdescribe('Product Model', () => {
+describe('Product Model', () => {
   test('it should retrieve product data from the database', async () => {
     const result = await productModel.getProducts();
     expect(result).toBeDefined();
