@@ -1,13 +1,15 @@
 # Project Name
+PepperJack BTetsy Carousel Server Design Capstone
 
 > Project description
+The goal of this project is to build out a server capable of hosting the carousel for traffic at large volume
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/SDC-PepperJack/Pepperjack-carousel-darjama (this repo)
+  - https://github.com/SDC-PepperJack/Pepperjack-checkout-service
+  - https://github.com/SDC-PepperJack/pepperjack-item-details
+  - https://github.com/SDC-PepperJack/Pepperjack-reviews-service
 
 ## Table of Contents
 
@@ -18,6 +20,12 @@
 ## Usage
 
 > Some usage instructions
+RESTful API routes are provided for all CRUD operations.
+GET requests to retrieve all products use url /products
+GET requests for a single product use the url /products/:productId
+POST requests use the url /products with JSON data for the fields productId, productItem, pictureUrl, and like in the body
+PUT requests use the url /products/:productId with JSON data for the like field in the body
+DELETE requests for a single product use the url /products/:productId
 
 ## Requirements
 
