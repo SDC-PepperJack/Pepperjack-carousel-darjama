@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost/BTetsy', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
+  useCreateIndex: true,
 });
 
 
@@ -72,8 +73,9 @@ const updateProduct = (productId, like, callback = () => {}) => {
   });
 };
 // delete product on delete request
-const deleteProduct = (productId, callback = () => {}) => {
-  MyProductsModel.findByIdAndDelete(productId, (err, docs) => {
+const deleteProduct = (prodId, callback = () => {}) => {
+  console.log("deleting ", prodId)
+  MyProductsModel.deleteOne({ productId: prodId }, (err, docs) => {
     callback(err, docs);
   });
 };
