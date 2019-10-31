@@ -6,7 +6,7 @@ import LeftArrow from './LeftArrow.jsx';
 import RightArrow from './RightArrow.jsx';
 import HeartButton from './HeartButton.jsx';
 import ModalBox from './ModalBox.jsx';
-// import styles from './styles.css';
+import styles from './styles.css';
 
 class App extends React.Component {
   // static functions refer to App
