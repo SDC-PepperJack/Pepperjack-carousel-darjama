@@ -5,7 +5,7 @@ mongoose.Promise = Promise;
 const productModel = require('../../../server/models/index.js');
 
 const { MyWishlistModel } = productModel;
-//MyWishlistModel.find({ username: /test_User/i }).deleteOne().exec();
+MyWishlistModel.find({ username: /test_User/i }).deleteOne().exec();
 
 beforeAll(async () => {
   await mongoose.connect('mongodb://localhost/BTetsy', {
@@ -16,7 +16,7 @@ beforeAll(async () => {
 });
 })
 
-describe('Product Model Test', () => {
+xdescribe('Product Model Test', () => {
 
   test('it should retrieve product data from the database', async () => {
     const result = await productModel.getProducts();
@@ -54,13 +54,23 @@ describe('Product Model Test', () => {
 });
 
 
-xdescribe('API Routes', () => {
+describe('API Routes', () => {
   test('A get request to /products/3 should return the requested product', (done) => {
     request.get('/products/3')
       .expect(200)
       .expect((res) => {
         expect(res.body[0].productId).toEqual(3);
-        expect(res.body[0].productItem).toEqual('BTS - Bunny Hat Series Enamel Pin');
+        expect(res.body[0].productItem).toEqual('New Item! BTS V Dress Shirt');
+      })
+      .end(done);
+  });
+  test('A put request to /products/3 should update the requested product', async (done) => {
+    await request.put('/products/3')
+      .send({ like: true });
+    expect(200);
+    request.get('/products/3')
+      .expect((res) => {
+        expect(res.body[0].like).toBeTruthy();
       })
       .end(done);
   });
