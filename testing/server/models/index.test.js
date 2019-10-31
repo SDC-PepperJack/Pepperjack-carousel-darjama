@@ -64,13 +64,42 @@ describe('API Routes', () => {
       })
       .end(done);
   });
-  test('A put request to /products/3 should update the requested product', async (done) => {
+  test('A put request to /products/3 should update like to true', async (done) => {
     await request.put('/products/3')
       .send({ like: true });
     expect(200);
     request.get('/products/3')
       .expect((res) => {
         expect(res.body[0].like).toBeTruthy();
+      })
+      .end(done);
+  });
+  test('A put request to /products/3 should update like to false', async (done) => {
+    await request.put('/products/3')
+      .send({ like: false });
+    expect(200);
+    request.get('/products/3')
+      .expect((res) => {
+        expect(res.body[0].like).toBeFalsy();
+      })
+      .end(done);
+  });
+  test('A post request should create a new record', async (done) => {
+    await request.post('/products')
+      .send({"pictureUrl":["http://lorempixel.com/640/480/technics"],"productId":777,"productItem":"Gorgeous Soft Soap","like":true,});
+    expect(200);
+    request.get('/products/777')
+      .expect((res) => {
+        expect(res.body[0].productItem).toEqual("Gorgeous Soft Soap");
+      })
+      .end(done);
+  });
+  test('A delete request to /products/777 should remove the record', async (done) => {
+    await request.delete('/products/777');
+    expect(200);
+    request.get('/products/777')
+      .expect((res) => {
+        expect(res.body).toHaveLength(0);
       })
       .end(done);
   });
