@@ -5,20 +5,18 @@ mongoose.Promise = Promise;
 const productModel = require('../../../server/models/index.js');
 
 const { MyWishlistModel } = productModel;
-MyWishlistModel.find({ username: /test_User/i }).deleteOne().exec();
+//MyWishlistModel.find({ username: /test_User/i }).deleteOne().exec();
+
+beforeAll(async () => {
+  await mongoose.connect('mongodb://localhost/BTetsy', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+});
+})
 
 describe('Product Model Test', () => {
-
-  // beforeAll(async () => {
-  //   await mongoose.connect('mongodb://localhost/BTetsy', {
-  //     useNewUrlParser: true,
-  //     useUnifiedTopology: true,
-  //     useFindAndModify: false,
-  //   }, (err) => {
-  //     console.error(err);
-  //     process.exit(1);
-  //   });
-  // });
 
   test('it should retrieve product data from the database', async () => {
     const result = await productModel.getProducts();

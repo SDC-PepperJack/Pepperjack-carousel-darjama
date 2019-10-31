@@ -62,7 +62,7 @@ app.post('/wishlists', (req, res) => {
 
 // get individual product item
 app.get('/products/:productId', (req, res) => {
-  models.getProductById(req.query.productId, (err, data) => {
+  models.getProductById(req.params.productId, (err, data) => {
     if (err) {
       throw err;
     } else {
