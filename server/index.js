@@ -33,9 +33,14 @@ app.put('/products/:productId', (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 app.delete('/products', (req, res) => {
   console.log('req', req);
   models.deleteProduct(req.query.productId, (err, results) => {
+=======
+app.delete('/products/:productId', (req, res) => {
+  models.deleteProduct(req.params.productId, (err, results) => {
+>>>>>>> 033cd84b675e660067a29f21d72fed179cea34f0
     if (err) {
       res.status(404).send('Error occured deleting product info');
     }
