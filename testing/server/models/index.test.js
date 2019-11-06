@@ -5,7 +5,8 @@ mongoose.Promise = Promise;
 const productModel = require('../../../server/models/index.js');
 
 const { MyWishlistModel } = productModel;
-MyWishlistModel.find({ username: /test_User/i }).deleteOne().exec();
+// MyWishlistModel.find({ username: /test_User/i }).deleteOne().exec();
+
 
 beforeAll(async () => {
   await mongoose.connect('mongodb://localhost/BTetsy', {
@@ -16,8 +17,7 @@ beforeAll(async () => {
 });
 })
 
-xdescribe('Product Model Test', () => {
-
+describe('Product Model Test', () => {
   test('it should retrieve product data from the database', async () => {
     const result = await productModel.getProducts();
     expect(result).toBeDefined();
