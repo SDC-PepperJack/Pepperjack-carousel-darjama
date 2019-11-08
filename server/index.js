@@ -1,6 +1,6 @@
 const express = require('express');
 const parser = require('body-parser');
-const models = require('./models/pgModel.js');
+const models = require('./models/riakModel.js');
 
 const port = 3333;
 const app = express();
