@@ -1,6 +1,6 @@
 const express = require('express');
 const parser = require('body-parser');
-const models = require('./models/riakModel.js');
+const models = require('./models/pgModel.js');
 
 const port = 3333;
 const app = express();
@@ -25,7 +25,7 @@ app.post('/products', (req, res) => {
 });
 // update like of productId
 app.put('/products/:productId', (req, res) => {
-  models.updateProduct(req.params.productId, req.body.like, (err, results) => {
+  models.updateProduct(req.params.productId, req.body.likes, (err, results) => {
     if (err) {
       res.status(404).send('Error occured updating product info');
     }

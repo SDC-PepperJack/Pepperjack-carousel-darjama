@@ -13,18 +13,17 @@ client.connect();
 
 // get product by productId
 const getProductById = (id, callback = () => {}) => {
-  client.query('SELECT * FROM product WHERE productid = $1', [id], (err, res) => {
+  client.query('SELECT * FROM product WHERE productId = $1', [id], (err, res) => {
     if (err) {
       throw new Error(err);
     } else {
       callback(err, res.rows);
-
     }
   });
 };
 // get all products
 const getProducts = (callback = () => {}) => {
-  client.query('SELECT * FROM product WHERE productid >= 0', (err, res) => {
+  client.query('SELECT * FROM product WHERE productId >= 0', (err, res) => {
     if (err) {
       throw new Error(err);
     } else {
