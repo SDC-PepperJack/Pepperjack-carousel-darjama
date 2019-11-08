@@ -1,9 +1,13 @@
+const newrelic = require('newrelic');
 const express = require('express');
 const parser = require('body-parser');
 const models = require('./models/pgModel.js');
 
+
 const port = 3333;
 const app = express();
+app.locals.newrelic = newrelic;
+
 app.use(parser.json());
 
 app.use(express.static(`${__dirname}/../dist`));
