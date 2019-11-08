@@ -22,7 +22,7 @@ class App extends React.Component {
       currIndex: 0,
       translateVal: 0,
       show: false,
-      like: false,
+      likes: false,
       productId: null,
     };
     this.nextPicture = this.nextPicture.bind(this);
@@ -39,7 +39,7 @@ class App extends React.Component {
     this.setState({ productId });
     axios.get(`/products/${productId || 3}`)
       .then((results) => {
-        this.setState({ images: results.data[0].pictureUrl, like: results.data[0].like });
+        this.setState({ images: results.data[0].pictureurl, likes: results.data[0].likes });
       })
       .catch((error) => {
         // eslint-disable-next-line
@@ -54,10 +54,10 @@ class App extends React.Component {
 
   async toggleHeart() {
     const { productId } = this.state;
-    await this.setState((state) => ({ like: !state.like }));
+    await this.setState((state) => ({ likes: !state.likes }));
     axios.put(`/products/${productId}`, {
       // eslint-disable-next-line
-      like: this.state.like,
+      likes: this.state.likes,
     })
       .then((response) => {
         // eslint-disable-next-line
@@ -111,7 +111,7 @@ class App extends React.Component {
 
   render() {
     const {
-      translateVal, images, like, show, currIndex,
+      translateVal, images, likes, show, currIndex,
     } = this.state;
     return (
 
@@ -128,7 +128,7 @@ class App extends React.Component {
 
           <HeartButton
             toggleHeart={this.toggleHeart}
-            like={like}
+            likes={likes}
           />
 
           <LeftArrow

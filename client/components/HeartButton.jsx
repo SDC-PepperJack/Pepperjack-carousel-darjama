@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './styles.css';
 
-const HeartButton = ({ toggleHeart, like }) => (
+const HeartButton = ({ toggleHeart, likes }) => (
   <div role="button" tabIndex="0" aria-label="wishlist button" className={styles.heartShapeButton} onClick={toggleHeart}>
-    {like
+    {likes
       ? (
         <i
           className="fa fa-heart"
