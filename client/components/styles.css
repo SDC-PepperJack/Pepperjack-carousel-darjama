@@ -1,0 +1,153 @@
+.carousel {
+  position: relative;
+  width: 500px;
+  height: 610px;
+  /* right: 25%; */
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.carouselWrapper {
+  display: inline-flex;
+  transition-delay: 0s;
+  transition-duration: 1s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+.carouselPic {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 60%;
+  width: 500px;
+  height: 500px;
+  position: relative;
+  float: left;
+}
+.displayContainer {
+  display: flex;
+  justify-content: center;
+  margin-left: -8%
+}
+.displayNone {
+  display: none;
+}
+.modalBox {
+  position: fixed;
+  padding-top: 100px;
+  left: 0;
+  right:0;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+
+.thumbnails {
+  position: relative;
+  float: left;
+}
+.thumbnailAfter {
+  width: 60px;
+  height: 60px;
+  opacity: 1;
+}
+.thumbnailBefore {
+  width: 60px;
+  height: 60px;
+  opacity: .5;
+}
+img.thumbnailBefore:hover {
+  opacity: 1;
+  -webkit-animation: fadein .5s;
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: .5; }
+  to   { opacity: 1; }
+}
+.modalContainer {
+  display: block;
+  position: absolute;
+  top: 10px;
+  justify-content: center;
+  /* margin-left: auto;
+  margin-right: auto; */
+}
+.modalContent {
+  display: block;
+  /* width: 200%; */
+  height: auto;
+  /* min-width: 700px; */
+  min-height: 700px;
+  max-height: 700px;
+  max-width: 700px;
+  overflow: hidden;
+  margin-left: 450px;
+  margin-right: auto;
+  object-fit: contain;
+}
+.button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: white;
+  color: black;
+  border-color: rgba(0, 0, 0, 0.15);
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  font: 400 30px system-ui;
+  padding: 8px 22px;
+}
+.rightArrow {
+  position: absolute;
+  top: 35%;
+  right: 3%;
+  height: 30px;
+  width: 30px
+}
+.leftArrow {
+  position: absolute;
+  top: 35%;
+  left: 3%;
+  height: 30px;
+  width: 30px;
+}
+.arrow {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform ease-in .1s;
+}
+.heartShapeButton {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  height: auto;
+  width: 30px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform ease-in .1s;
+}
+.hr {
+  background-color: rgb(225, 227, 223);
+  height: 1px;
+  border-width: 0px;
+  margin-top: 25px;
+  width: 70%;
+  margin-left: 65px;
+  margin-block-start: 20px;
+}

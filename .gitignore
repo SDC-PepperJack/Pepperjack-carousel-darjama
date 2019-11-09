@@ -28,3 +28,6 @@ dist/main.js
 
 #.env
 .env
+
+# newRelic
+newrelic.js
