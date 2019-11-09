@@ -12,7 +12,8 @@
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js --no-deprecation",
     "seed": "node server/seed/pgSeed.js",
-    "build": "webpack --watch --mode development",
+    "seed:import": "node server/seed/pgImportCsv.js",
+    "build": "webpack --watch --mode production",
     "test": "jest"
   },
   "dependencies": {
