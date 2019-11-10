@@ -56,6 +56,7 @@ class App extends React.Component {
     const { productId } = this.state;
     await this.setState((state) => ({ likes: !state.likes }));
     axios.put(`http://localhost:3333/products/${productId}`, {
+
       // eslint-disable-next-line
       likes: this.state.likes,
     })
