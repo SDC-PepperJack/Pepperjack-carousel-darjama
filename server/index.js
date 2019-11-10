@@ -1,5 +1,6 @@
 const newrelic = require('newrelic');
 const express = require('express');
+const cors = require('cors');
 const parser = require('body-parser');
 const models = require('./models/pgModel.js');
 
@@ -8,6 +9,7 @@ const port = 3333;
 const app = express();
 app.locals.newrelic = newrelic;
 
+app.use(cors());
 app.use(parser.json());
 
 app.use(express.static(`${__dirname}/../dist`));
@@ -24,9 +26,14 @@ app.get('/products', (req, res) => {
 
 // add product name, url, username, like
 app.post('/products', (req, res) => {
-  models.saveProduct(req.body.productId, req.body.productItem, req.body.pictureUrl, req.body.like);
-  res.end('done');
+  models.saveProduct(req.body.productId, req.body.productItem, req.body.pictureUrl, req.body.likes, (err, results) => {
+    if (err) {
+      res.status(400).send('Cannot add new product');
+    }
+    res.status(202).send(results);
+  });
 });
+
 // update like of productId
 app.put('/products/:productId', (req, res) => {
   models.updateProduct(req.params.productId, req.body.likes, (err, results) => {

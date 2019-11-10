@@ -45,8 +45,8 @@ const updateProduct = (productId, like, callback = () => {}) => {
 };
 
 // save 1 product
-const saveProduct = (productId, productItem, pictureUrl, like, callback = () => {}) => {
-  client.query('INSERT INTO product(productId, productItem, pictureUrl, likes) VALUES($1, $2, $3, $4)', [productId, productItem, pictureUrl, like], (err, res) => {
+const saveProduct = (productid, productitem, pictureurl, likes, callback = () => {}) => {
+  client.query('INSERT INTO product(productid, productitem, pictureurl, likes) VALUES($1, $2, $3, $4)', [productid, productitem, pictureurl, likes], (err, res) => {
     if (err) {
       throw new Error(err);
     } else {
@@ -89,7 +89,7 @@ const getWishlistByUsername = (username, callback = () => {}) => {
 
 // delete product on delete request
 const deleteProduct = (prodId, callback = () => {}) => {
-  client.query('DELETE * FROM wishlist WHERE username = $1', [prodId], (err, res) => {
+  client.query('DELETE FROM product WHERE productid = $1', [prodId], (err, res) => {
     if (err) {
       throw new Error(err);
     } else {
