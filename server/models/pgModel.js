@@ -15,9 +15,10 @@ client.connect();
 const getProductById = (id, callback = () => {}) => {
   client.query('SELECT * FROM product WHERE productId = $1', [id], (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows);
+      callback(null, res.rows);
     }
   });
 };
@@ -25,9 +26,10 @@ const getProductById = (id, callback = () => {}) => {
 const getProducts = (callback = () => {}) => {
   client.query('SELECT * FROM product WHERE productId >= 0', (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows);
+      callback(null, res.rows);
 
     }
   });
@@ -37,9 +39,10 @@ const getProducts = (callback = () => {}) => {
 const updateProduct = (productId, like, callback = () => {}) => {
   client.query('UPDATE product SET likes = $1 WHERE productId = $2', [like, productId], (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows[0]);
+      callback(null, res.rows[0]);
     }
   });
 };
@@ -48,9 +51,10 @@ const updateProduct = (productId, like, callback = () => {}) => {
 const saveProduct = (productid, productitem, pictureurl, likes, callback = () => {}) => {
   client.query('INSERT INTO product(productid, productitem, pictureurl, likes) VALUES($1, $2, $3, $4)', [productid, productitem, pictureurl, likes], (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows[0]);
+      callback(null, res.rows[0]);
     }
   });
 };
@@ -59,9 +63,10 @@ const saveProduct = (productid, productitem, pictureurl, likes, callback = () =>
 const saveWishlist = (products, username, callback = () => {}) => {
   client.query('INSERT INTO wishlist(products, username) VALUES($1, $2)', [products, username], (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows[0]);
+      callback(null, res.rows[0]);
     }
   });
 };
@@ -69,9 +74,10 @@ const saveWishlist = (products, username, callback = () => {}) => {
 const getWishlists = (callback = () => {}) => {
   client.query('SELECT * FROM wishlist', (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows);
+      callback(null, res.rows);
     }
   });
 };
@@ -80,9 +86,10 @@ const getWishlists = (callback = () => {}) => {
 const getWishlistByUsername = (username, callback = () => {}) => {
   client.query('SELECT * FROM wishlist WHERE username = $1', [username], (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows);
+      callback(null, res.rows);
     }
   });
 };
@@ -91,9 +98,10 @@ const getWishlistByUsername = (username, callback = () => {}) => {
 const deleteProduct = (prodId, callback = () => {}) => {
   client.query('DELETE FROM product WHERE productid = $1', [prodId], (err, res) => {
     if (err) {
-      throw new Error(err);
+      callback(err);
+      console.error(err.stack);
     } else {
-      callback(err, res.rows[0]);
+      callback(null, res.rows[0]);
     }
   });
 };

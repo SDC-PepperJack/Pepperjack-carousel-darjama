@@ -17,7 +17,7 @@ app.use(express.static(`${__dirname}/../dist`));
 app.get('/products', (req, res) => {
   models.getProducts((err, data) => {
     if (err) {
-      throw err;
+      res.sendStatus(404).end();
     } else {
       res.send(data);
     }
@@ -28,7 +28,7 @@ app.get('/products', (req, res) => {
 app.post('/products', (req, res) => {
   models.saveProduct(req.body.productId, req.body.productItem, req.body.pictureUrl, req.body.likes, (err, results) => {
     if (err) {
-      res.status(400).send('Cannot add new product');
+      res.sendStatus(400).send('Cannot add new product');
     }
     res.status(202).send(results);
   });
@@ -38,7 +38,7 @@ app.post('/products', (req, res) => {
 app.put('/products/:productId', (req, res) => {
   models.updateProduct(req.params.productId, req.body.likes, (err, results) => {
     if (err) {
-      res.status(404).send('Error occured updating product info');
+      res.sendStatus(404).end(err);
     }
     res.status(200).send(results);
   });
@@ -47,7 +47,7 @@ app.put('/products/:productId', (req, res) => {
 app.delete('/products/:productId', (req, res) => {
   models.deleteProduct(req.params.productId, (err, results) => {
     if (err) {
-      res.status(404).send('Error occured deleting product info');
+      res.sendStatus(404).send('Error occured deleting product info');
     }
     res.status(204).send(results);
   });
@@ -57,7 +57,7 @@ app.delete('/products/:productId', (req, res) => {
 app.get('/wishlists', (req, res) => {
   models.getWishlists((err, data) => {
     if (err) {
-      throw err;
+      res.sendStatus(404).end();
     } else {
       res.send(data);
     }
@@ -67,14 +67,18 @@ app.get('/wishlists', (req, res) => {
 // adding product name and username to wishlist
 app.post('/wishlists', (req, res) => {
   models.saveWishlist(req.body.products, req.body.username);
+  if (err) {
+    res.sendStatus(404).end();
+  } else {
   res.end('finished');
+  }
 });
 
 // get individual product item
 app.get('/products/:productId', (req, res) => {
   models.getProductById(req.params.productId, (err, data) => {
     if (err) {
-      throw err;
+      res.sendStatus(404).end();
     } else {
       res.send(data);
     }
@@ -85,7 +89,7 @@ app.get('/wishlists/:username', (req, res) => {
   models.getWishlistByUsername(req.params.username, (err, data) => {
     if (err) {
       // eslint-disable-next-line
-      console.error('this is an error in getting username of wishlists');
+      res.sendStatus(404).end();
     } else {
       res.send(data);
     }
