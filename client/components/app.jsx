@@ -37,7 +37,7 @@ class App extends React.Component {
     const searchParams = new URLSearchParams(window.location.search);
     const productId = Number(searchParams.get('productId'));
     this.setState({ productId });
-    axios.get(`http://localhost:3333/products/${productId || 3}`)
+    axios.get(`/products/${productId || 3}`)
       .then((results) => {
         this.setState({ images: results.data[0].pictureurl, likes: results.data[0].likes });
       })
@@ -55,7 +55,7 @@ class App extends React.Component {
   async toggleHeart() {
     const { productId } = this.state;
     await this.setState((state) => ({ likes: !state.likes }));
-    axios.put(`http://localhost:3333/products/${productId}`, {
+    axios.put(`/products/${productId}`, {
 
       // eslint-disable-next-line
       likes: this.state.likes,
