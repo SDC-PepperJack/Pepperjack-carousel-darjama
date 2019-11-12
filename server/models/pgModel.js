@@ -15,7 +15,6 @@ client.connect();
 const getProductById = (id, callback = () => {}) => {
   client.query('SELECT * FROM product WHERE productId = $1', [id], (err, res) => {
     if (err) {
-      callback(err);
       console.error(err.stack);
     } else {
       callback(null, res.rows);
